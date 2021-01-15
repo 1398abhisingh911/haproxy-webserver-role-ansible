@@ -1,0 +1,8 @@
+- hosts: frontend
+  roles: 
+   - haproxy
+ 
+- hosts: backend
+  roles: 
+   - webserver
+ 

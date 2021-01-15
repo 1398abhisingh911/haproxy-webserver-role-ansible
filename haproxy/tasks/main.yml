@@ -1,0 +1,26 @@
+---
+# tasks file for haproxy
+- name: Install haproxy
+  package:
+    name: httpd
+    state: present
+
+- name: Install httpd
+  package:
+    name: httpd
+    state: present
+
+- service:
+    name: haproxy
+    state: started
+
+
+- service:
+    name: httpd
+    state: started
+
+- name: copy conf file
+  template:
+    src: "{{conf_file_src}}"
+    dest: "{{conf_file_dest}}"
+  notify: restart haproxy

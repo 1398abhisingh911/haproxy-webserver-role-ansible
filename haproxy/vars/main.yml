@@ -1,0 +1,4 @@
+---
+# vars file for haproxy
+conf_file_src: "haproxy.cfg"
+conf_file_dest: "/etc/haproxy/haproxy.cfg"

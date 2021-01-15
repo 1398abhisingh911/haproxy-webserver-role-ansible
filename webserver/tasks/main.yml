@@ -1,0 +1,35 @@
+- name: Install HTTPD
+  package:
+    name: httpd
+    state: present
+ 
+
+- name: Copy HTTP File
+  copy: 
+    src: "{{html_file_loc}}"
+    dest: "{{document_root}}"
+ 
+
+- name: Copy HTTPD CONFIG FILE
+  template:
+    src: "{{httpd_config_scr}}"
+    dest: "{{httpd_config_dest}}"
+  notify:
+    - restart httpd
+
+- name: enable port
+  firewalld:
+    port: 8080/tcp
+    state: enabled
+    permanent: yes
+    immediate: yes
+  ignore_errors: True   
+
+- name: start httpd
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+
+
+
